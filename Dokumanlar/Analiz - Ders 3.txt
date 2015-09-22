@@ -1,0 +1,14 @@
+Dendrogramda tüm düðümler birleþir.
+Apsis (x) ekseninde  kök düðümler için isimlendirme ? 
+		Metin, Geliþt: resim veya renk
+Ordinat (y) ekseninde periyodik sayýsal bir dizi þeklinde isimlendirme ?
+		Periyodik bir dizi: baþlangýç(0), son (hesaplanacak), artýþ miktarý (çözünürlük) 
+Apsis için deðiþken tanýmý. 50 karakter
+Ordinat için deðiþken tanýmý. 50 karakter
+Geliþtirilebilir: Tüm düðümler için numaralandýrma ?
+Renklendirilmiþ düðümlerin altýnda kalan renklendirilmemiþ çerçeveler üst düðümün rengini alarak çizilir.
+Dikey , Sað sol referanslý dendrogramlar oluþturula bilmeli.
+Birleþtirmeli veya Bölünmeli yapý oluþumu ?
+		Birleþtirmeli ve Bölünmeli kümlemede de sonuçlarýn tamamýnýn hesaplandýðý kabul edilmiþtir.
+		Sorun bir analiz problemi deðil mimari problemine dönüþmüþtür.
+
