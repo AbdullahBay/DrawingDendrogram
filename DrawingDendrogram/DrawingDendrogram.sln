@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawingDendrogram", "DrawingDendrogram\DrawingDendrogram.csproj", "{9D3214D3-D720-4400-AEA3-9B304E750DBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDrawing", "TestDrawing\TestDrawing.csproj", "{7A3A4AFA-A78F-44D5-B6A7-5556A8A16DD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9D3214D3-D720-4400-AEA3-9B304E750DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D3214D3-D720-4400-AEA3-9B304E750DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D3214D3-D720-4400-AEA3-9B304E750DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3A4AFA-A78F-44D5-B6A7-5556A8A16DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3A4AFA-A78F-44D5-B6A7-5556A8A16DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3A4AFA-A78F-44D5-B6A7-5556A8A16DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3A4AFA-A78F-44D5-B6A7-5556A8A16DD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
