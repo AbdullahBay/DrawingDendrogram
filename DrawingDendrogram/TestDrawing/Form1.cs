@@ -25,23 +25,65 @@ namespace TestDrawing
         int MyMargin = 50;
         int Yükseklik = 200;
         int Genislik = 50;
+
+        int Bosluk = 50;
+
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Point solUst = new Point(MyMargin, MyMargin);
-            Point solAlt = new Point(MyMargin, MyMargin + Yükseklik);
-            Point sagUst = new Point(MyMargin + Genislik, MyMargin);
-            Point sagAlt = new Point(MyMargin + Genislik, MyMargin + Yükseklik);
             Brush myBrush = new SolidBrush(System.Drawing.Color.Blue);
-            Pen pen = new Pen(myBrush,6);
+            Pen pen = new Pen(myBrush, 6);
+            Point RefPoint;
+            //1
+            RefPoint= new Point(MyMargin, MyMargin);
+            
+            Point solUst = RefPoint;
+            Point solAlt = PointFromRef(solUst, 0, Yükseklik);
+            Point sagUst = PointFromRef(solUst, Genislik, 0);
+            Point sagAlt = PointFromRef(solUst, Genislik, Yükseklik);
+      
+            
+            e.Graphics.DrawLine(pen, solUst, solAlt);
+            e.Graphics.DrawLine(pen, sagUst, sagAlt);
+            e.Graphics.DrawLine(pen, sagUst, solUst);
+            //2
+            RefPoint = PointFromRef(sagUst, Bosluk, 0);
+
+            solUst = RefPoint;
+            solAlt = PointFromRef(solUst, 0, Yükseklik);
+            sagUst = PointFromRef(solUst, Genislik, 0);
+            sagAlt = PointFromRef(solUst, Genislik, Yükseklik);
+
+            e.Graphics.DrawLine(pen, solUst, solAlt);
+            e.Graphics.DrawLine(pen, sagUst, sagAlt);
+            e.Graphics.DrawLine(pen, sagUst, solUst);
+            //3
+            RefPoint = PointFromRef(sagUst, Bosluk, 0);
+
+            solUst = RefPoint;
+            solAlt = PointFromRef(solUst, 0, Yükseklik);
+            sagUst = PointFromRef(solUst, Genislik, 0);
+            sagAlt = PointFromRef(solUst, Genislik, Yükseklik);
+
+            e.Graphics.DrawLine(pen, solUst, solAlt);
+            e.Graphics.DrawLine(pen, sagUst, sagAlt);
+            e.Graphics.DrawLine(pen, sagUst, solUst);
+            //4
+            RefPoint = PointFromRef(sagUst, Bosluk, 0);
+
+            solUst = RefPoint;
+            solAlt = PointFromRef(solUst, 0, Yükseklik);
+            sagUst = PointFromRef(solUst, Genislik, 0);
+            sagAlt = PointFromRef(solUst, Genislik, Yükseklik);
+
             e.Graphics.DrawLine(pen, solUst, solAlt);
             e.Graphics.DrawLine(pen, sagUst, sagAlt);
             e.Graphics.DrawLine(pen, sagUst, solUst);
 
-
-            /*e.Graphics.DrawLine(pen, 10, 10, 10, Yükseklik);
-            e.Graphics.DrawLine(pen, 10, 10, Genislik, 10);
-            e.Graphics.DrawLine(pen, Genislik, 10, Genislik, Yükseklik);*/
-
+        }
+        private Point PointFromRef(Point RefPoint, int x,int y)
+        {
+            Point returnPoint = new Point(RefPoint.X + x, RefPoint.Y + y);
+            return returnPoint;
         }
     }
 }
