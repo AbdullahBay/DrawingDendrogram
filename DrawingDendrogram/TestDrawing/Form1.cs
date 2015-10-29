@@ -22,12 +22,26 @@ namespace TestDrawing
             pen.Dispose();
             formGraphics.Dispose();*/
         }
-
+        int MyMargin = 50;
+        int Yükseklik = 200;
+        int Genislik = 50;
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            Point solUst = new Point(MyMargin, MyMargin);
+            Point solAlt = new Point(MyMargin, MyMargin + Yükseklik);
+            Point sagUst = new Point(MyMargin + Genislik, MyMargin);
+            Point sagAlt = new Point(MyMargin + Genislik, MyMargin + Yükseklik);
             Brush myBrush = new SolidBrush(System.Drawing.Color.Blue);
             Pen pen = new Pen(myBrush,6);
-            e.Graphics.DrawLine(pen, 10, 10, 10, 100);
+            e.Graphics.DrawLine(pen, solUst, solAlt);
+            e.Graphics.DrawLine(pen, sagUst, sagAlt);
+            e.Graphics.DrawLine(pen, sagUst, solUst);
+
+
+            /*e.Graphics.DrawLine(pen, 10, 10, 10, Yükseklik);
+            e.Graphics.DrawLine(pen, 10, 10, Genislik, 10);
+            e.Graphics.DrawLine(pen, Genislik, 10, Genislik, Yükseklik);*/
+
         }
     }
 }
