@@ -1,7 +1,7 @@
 
 Dendrogramda tüm düðümler birleþir.
 Apsis (x) ekseninde  kök düðümler için isimlendirme ? 
-		Metin, Geliþlik: resim veya renk
+		Metin, Þekil: resim veya renk
 Ordinat (y) ekseninde periyodik sayýsal bir dizi þeklinde isimlendirme ?
 		Periyodik bir dizi: baþlangýç(0), son (hesaplanacak), artýþ 			miktarý (çözünürlük) 
 Apsis için deðiþken tanýmý. 50 karakter
