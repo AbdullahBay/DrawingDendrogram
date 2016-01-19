@@ -48,65 +48,22 @@ namespace TestDrawing
             Point sagAlt = new Point(70, YukseklikHesapla(0));
 
             Point FramePoint1 =CerceveCiz(solAlt, sagAlt, Yukseklik, e, pen);
-            Point solUst;
-            Point sagUst;
-            //solUst = new Point((Size)solAlt);
-            //solUst.Y = YukseklikHesapla(Yukseklik);
-            //sagUst = new Point((Size)sagAlt);
-            //sagUst.Y = YukseklikHesapla(Yukseklik);
-            //ortaNokta = new Size((sagUst.X - solUst.X) / 2, 0);
-            //Point FramePoint1 = Point.Add(solUst, ortaNokta);
-
-            //e.Graphics.DrawLine(pen, solUst, solAlt);
-            //e.Graphics.DrawLine(pen, sagUst, sagAlt);
-            //e.Graphics.DrawLine(pen, sagUst, solUst);
+            
 
             //2. frame
-            Yukseklik = 100;
-            solAlt = new Point(100, YukseklikHesapla(0));
-            sagAlt = new Point(120, YukseklikHesapla(0));
-            Point FramePoint2 = CerceveCiz(solAlt, sagAlt, Yukseklik, e, pen);
-            //solUst = new Point((Size)solAlt);
-            //solUst.Y = YukseklikHesapla(Yukseklik);
-            //sagUst = new Point((Size)sagAlt);
-            //sagUst.Y = YukseklikHesapla(Yukseklik);
-            //ortaNokta = new Size((sagUst.X - solUst.X) / 2, 0);
-            //Point FramePoint2 = Point.Add(solUst, ortaNokta);
-
-            //e.Graphics.DrawLine(pen, solUst, solAlt);
-            //e.Graphics.DrawLine(pen, sagUst, sagAlt);
-            //e.Graphics.DrawLine(pen, sagUst, solUst);
+            Point FramePoint2 = CerceveCiz(new Point(100, YukseklikHesapla(0)), new Point(120, YukseklikHesapla(0)), 100, e, pen);
+            
             //3. frame
-            Yukseklik = 150;
-            solAlt = FramePoint1;
-            sagAlt = FramePoint2;
-            Point FramePoint3 = CerceveCiz(solAlt, sagAlt, Yukseklik, e, pen);
-            //solUst = new Point((Size)solAlt);
-            //solUst.Y = YukseklikHesapla(Yukseklik);
-            //sagUst = new Point((Size)sagAlt);
-            //sagUst.Y = YukseklikHesapla(Yukseklik);
-            //ortaNokta = new Size((sagUst.X - solUst.X) / 2, 0);
-            //Point FramePoint3 = Point.Add(solUst, ortaNokta);
-
-            //e.Graphics.DrawLine(pen, solUst, solAlt);
-            //e.Graphics.DrawLine(pen, sagUst, sagAlt);
-            //e.Graphics.DrawLine(pen, sagUst, solUst);
+            
+            Point FramePoint3 = CerceveCiz(FramePoint1, FramePoint2, 150, e, pen);
+            
 
             //Ust. frame
             Yukseklik = 200;
             solAlt = FramePoint3;
             sagAlt = new Point(150, YukseklikHesapla(0));
             Point FramePoint4 = CerceveCiz(solAlt, sagAlt, Yukseklik, e, pen);
-            //solUst = new Point((Size)solAlt);
-            //solUst.Y = YukseklikHesapla(Yukseklik);
-            //sagUst = new Point((Size)sagAlt);
-            //sagUst.Y = YukseklikHesapla(Yukseklik);
-            //ortaNokta = new Size((sagUst.X - solUst.X) / 2, 0);
-            //Point FramePoint4 = Point.Add(solUst, ortaNokta);
-
-            //e.Graphics.DrawLine(pen, solUst, solAlt);
-            //e.Graphics.DrawLine(pen, sagUst, sagAlt);
-            //e.Graphics.DrawLine(pen, sagUst, solUst);
+            
             // soldan aşşağıya doğru metin yazıyor
             string Name ="sdasas";
             var g = e.Graphics;
@@ -120,9 +77,9 @@ namespace TestDrawing
             Point solUst;
             Point sagUst;
             solUst = new Point((Size)solAlt);
-            solUst.Y = YukseklikHesapla(Yukseklik);
+            solUst.Y = YukseklikHesapla(yukseklik);
             sagUst = new Point((Size)sagAlt);
-            sagUst.Y = YukseklikHesapla(Yukseklik);
+            sagUst.Y = YukseklikHesapla(yukseklik);
             Size ortaNokta = new Size((sagUst.X - solUst.X) / 2, 0);
             Point FramePoint = Point.Add(solUst, ortaNokta);
 
