@@ -11,20 +11,26 @@ namespace DrawingDendrogram
     public class DDendrogram
     {
         List<DFrame> Frames;
+        List<DFrame> ScaledFrames;
         Panel panel;
         Pen Pen;
         Brush Brush;
+        int LineWidth;
         public void Customize (Color lineColor )
         {
             Brush = new SolidBrush(lineColor);
-            Pen = new Pen(Brush, 6);
+            Pen = new Pen(Brush,LineWidth );
         }
-        int PanelHeight, PanelWidth;
+        int PanelHeight, PanelWidth , DrawHeight, DrawWidth;
         public DDendrogram(Panel gelenPanel)
         {
+            LineWidth = 1;
             Frames = new List<DFrame>();
+            ScaledFrames = new List<DFrame>();
             panel = gelenPanel;
+            DrawHeight = panel.Height - LineWidth / 2;
             PanelHeight = panel.Height;
+            DrawWidth = panel.Width - LineWidth;
             PanelWidth = panel.Width;
             Brush = new SolidBrush(System.Drawing.Color.Blue);
             Pen = new Pen(Brush, 6);
@@ -39,9 +45,9 @@ namespace DrawingDendrogram
             Point topLeft;
             Point topRihgt;
             topLeft = new Point((Size)bottomleftPoint);
-            topLeft.Y = YukseklikHesapla(height);
+            topLeft.Y = height;
             topRihgt = new Point((Size)bottomrightPoint);
-            topRihgt.Y = YukseklikHesapla(height);
+            topRihgt.Y = height;
             Size ortaNokta = new Size((topRihgt.X - topLeft.X) / 2, 0);
             Frames.Add(new DFrame()
             {
@@ -64,7 +70,7 @@ namespace DrawingDendrogram
             {
                 RightX = X;
             }
-            return new Point(X, YukseklikHesapla(0));
+            return new Point(X, 0);//YukseklikHesapla(0));
         }
         int YukseklikHesapla(int Yukseklik)
         {
@@ -79,12 +85,23 @@ namespace DrawingDendrogram
         public void Scale()
         {
             DendrogramWidth = RightX - LeftX;
-            WidthScale = PanelWidth / (float)DendrogramWidth;
-            HeightScale = PanelHeight / (float)DendrogramHeigh;
+            WidthScale = DrawWidth / (float)DendrogramWidth;
+            HeightScale = DrawHeight / (float)DendrogramHeigh;
+            foreach (var frame in Frames)
+            {
+                ScaledFrames.Add(new DFrame()
+                {
+                    BottomLeftPoint = new Point( (int)(frame.BottomLeftPoint.X*WidthScale), YukseklikHesapla( (int)(frame.BottomLeftPoint.Y * HeightScale) ) ),
+                    BottomRightPoint = new Point((int)(frame.BottomRightPoint.X * WidthScale), YukseklikHesapla((int)(frame.BottomRightPoint.Y * HeightScale))),
+                    Height = frame.Height*HeightScale,
+                    TopLeftPoint = new Point((int)(frame.TopLeftPoint.X * WidthScale), YukseklikHesapla((int)(frame.TopLeftPoint.Y * HeightScale))),
+                    TopRightPoint = new Point((int)(frame.TopRightPoint.X * WidthScale), YukseklikHesapla((int)(frame.TopRightPoint.Y * HeightScale)))
+                });
+            }
         }
         void Draw(PaintEventArgs e, Pen pen)
         {
-            foreach (var frame in Frames)
+            foreach (var frame in ScaledFrames)
             {
                 frame.Draw(e, pen);
             }

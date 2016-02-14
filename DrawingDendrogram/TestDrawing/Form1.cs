@@ -17,19 +17,19 @@ namespace TestDrawing
         public Form1()
         {
             InitializeComponent();
-            int XKonum = 10;
+            int XKonum =3;
             int Yukseklik = 0;
-            int YukseklikAttisi = 50;
+            int YukseklikArtisi = 50;
             int Bosluk = 30;
 
             dendrogramim = new DDendrogram(panel1);
             Point solAlt = dendrogramim.CreateStartPoint(XKonum);
             Point sagAlt;
-            for (int i = 0; i <10; i++)
+            for (int i = 0; i <50; i++)
             {
                 XKonum += Bosluk;
                 sagAlt = dendrogramim.CreateStartPoint(XKonum);
-                Yukseklik += YukseklikAttisi;
+                Yukseklik += YukseklikArtisi;
                 solAlt = dendrogramim.AddFrame(solAlt, sagAlt, Yukseklik);
             }
 
