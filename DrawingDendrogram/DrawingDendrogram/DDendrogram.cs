@@ -16,24 +16,32 @@ namespace DrawingDendrogram
         Pen Pen;
         Brush Brush;
         int LineWidth;
-        public void Customize (Color lineColor )
+        int PadddingLeft, PaddingTop;
+        /// <summary>
+        /// Customize fonksiyonu Scale fonksiyonundan önce kullanılmalıdır.
+        /// </summary>
+        /// <param name="lineColor"></param>
+        /// <param name="lineWidth"></param>
+        public void Customize (Color lineColor, int lineWidth )
         {
+            LineWidth = lineWidth;
             Brush = new SolidBrush(lineColor);
             Pen = new Pen(Brush,LineWidth );
+            DrawAreaHeight = panel.Height - LineWidth;
+            PanelHeight = panel.Height;
+            DrawAreaWidth = panel.Width - LineWidth;
+            PanelWidth = panel.Width;
+            PaddingTop = LineWidth / 2;
+            PadddingLeft = LineWidth / 2;
         }
-        int PanelHeight, PanelWidth , DrawHeight, DrawWidth;
+        int PanelHeight, PanelWidth , DrawAreaHeight, DrawAreaWidth;
         public DDendrogram(Panel gelenPanel)
         {
             LineWidth = 1;
             Frames = new List<DFrame>();
             ScaledFrames = new List<DFrame>();
             panel = gelenPanel;
-            DrawHeight = panel.Height - LineWidth / 2;
-            PanelHeight = panel.Height;
-            DrawWidth = panel.Width - LineWidth;
-            PanelWidth = panel.Width;
-            Brush = new SolidBrush(System.Drawing.Color.Blue);
-            Pen = new Pen(Brush, 6);
+            Customize(Color.Blue, LineWidth);
         }
         int DendrogramHeigh = 0;
         public Point AddFrame(Point bottomleftPoint, Point bottomrightPoint, int height)
@@ -74,9 +82,12 @@ namespace DrawingDendrogram
         }
         int YukseklikHesapla(int Yukseklik)
         {
-            return PanelHeight - Yukseklik;
+            return DrawAreaHeight+PaddingTop - Yukseklik;
         }
-       
+        int GenislikHesapla(int Genislik)
+        {
+            return PadddingLeft + Genislik;
+        }
         public void Draw()
         {
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
@@ -85,17 +96,17 @@ namespace DrawingDendrogram
         public void Scale()
         {
             DendrogramWidth = RightX - LeftX;
-            WidthScale = DrawWidth / (float)DendrogramWidth;
-            HeightScale = DrawHeight / (float)DendrogramHeigh;
+            WidthScale = DrawAreaWidth / (float)DendrogramWidth;
+            HeightScale = DrawAreaHeight / (float)DendrogramHeigh;
             foreach (var frame in Frames)
             {
                 ScaledFrames.Add(new DFrame()
                 {
-                    BottomLeftPoint = new Point( (int)(frame.BottomLeftPoint.X*WidthScale), YukseklikHesapla( (int)(frame.BottomLeftPoint.Y * HeightScale) ) ),
-                    BottomRightPoint = new Point((int)(frame.BottomRightPoint.X * WidthScale), YukseklikHesapla((int)(frame.BottomRightPoint.Y * HeightScale))),
+                    BottomLeftPoint = new Point(GenislikHesapla((int)(frame.BottomLeftPoint.X*WidthScale)), YukseklikHesapla( (int)(frame.BottomLeftPoint.Y * HeightScale) ) ),
+                    BottomRightPoint = new Point(GenislikHesapla((int)(frame.BottomRightPoint.X * WidthScale)), YukseklikHesapla((int)(frame.BottomRightPoint.Y * HeightScale))),
                     Height = frame.Height*HeightScale,
-                    TopLeftPoint = new Point((int)(frame.TopLeftPoint.X * WidthScale), YukseklikHesapla((int)(frame.TopLeftPoint.Y * HeightScale))),
-                    TopRightPoint = new Point((int)(frame.TopRightPoint.X * WidthScale), YukseklikHesapla((int)(frame.TopRightPoint.Y * HeightScale)))
+                    TopLeftPoint = new Point(GenislikHesapla((int)(frame.TopLeftPoint.X * WidthScale)), YukseklikHesapla((int)(frame.TopLeftPoint.Y * HeightScale))),
+                    TopRightPoint = new Point(GenislikHesapla((int)(frame.TopRightPoint.X * WidthScale)), YukseklikHesapla((int)(frame.TopRightPoint.Y * HeightScale)))
                 });
             }
         }

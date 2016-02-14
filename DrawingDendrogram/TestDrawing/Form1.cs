@@ -17,7 +17,13 @@ namespace TestDrawing
         public Form1()
         {
             InitializeComponent();
-            int XKonum =3;
+            //Test1();
+            Test2();
+        }
+
+        void Test1()
+        {
+            int XKonum = 0;
             int Yukseklik = 0;
             int YukseklikArtisi = 50;
             int Bosluk = 30;
@@ -25,7 +31,7 @@ namespace TestDrawing
             dendrogramim = new DDendrogram(panel1);
             Point solAlt = dendrogramim.CreateStartPoint(XKonum);
             Point sagAlt;
-            for (int i = 0; i <50; i++)
+            for (int i = 0; i < 10; i++)
             {
                 XKonum += Bosluk;
                 sagAlt = dendrogramim.CreateStartPoint(XKonum);
@@ -33,17 +39,32 @@ namespace TestDrawing
                 solAlt = dendrogramim.AddFrame(solAlt, sagAlt, Yukseklik);
             }
 
-
+            dendrogramim.Customize(Color.Black, 5);
             dendrogramim.Scale();
-            dendrogramim.Customize(Color.Black);
             dendrogramim.Draw();
         }
-     
-        //private Point PointFromRef(Point RefPoint, int x,int y)
-        //{
-        //    Point returnPoint = new Point(RefPoint.X + x, RefPoint.Y + y);
-        //    return returnPoint;
-        //}
-        
+        void Test2()
+        {
+            int XKonum = 150;
+            int Yukseklik = 40;
+            int YukseklikArtisi = 50;
+            int Bosluk = 150;
+
+            dendrogramim = new DDendrogram(panel1);
+            Point solAlt = dendrogramim.CreateStartPoint(XKonum);
+            Point sagAlt;
+            for (int i = 0; i < 10; i++)
+            {
+                XKonum += Bosluk;
+                sagAlt = dendrogramim.CreateStartPoint(XKonum);
+                Yukseklik += YukseklikArtisi*i;
+                solAlt = dendrogramim.AddFrame(solAlt, sagAlt, Yukseklik);
+            }
+
+            dendrogramim.Customize(Color.Black, 9);
+            dendrogramim.Scale();
+            dendrogramim.Draw();
+        }
+
     }
 }
