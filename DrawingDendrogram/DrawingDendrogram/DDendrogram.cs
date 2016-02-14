@@ -12,12 +12,21 @@ namespace DrawingDendrogram
     {
         List<DFrame> Frames;
         Panel panel;
+        Pen Pen;
+        Brush Brush;
+        public void Customize (Color lineColor )
+        {
+            Brush = new SolidBrush(lineColor);
+            Pen = new Pen(Brush, 6);
+        }
         int calismaAlaniYukseklik;
         public DDendrogram(Panel gelenPanel)
         {
             Frames = new List<DFrame>();
             panel = gelenPanel;
             calismaAlaniYukseklik = panel.Height;
+            Brush = new SolidBrush(System.Drawing.Color.Blue);
+            Pen = new Pen(Brush, 6);
         }
         public Point AddFrame(Point bottomleftPoint, Point bottomrightPoint, int height)
         {
@@ -38,9 +47,9 @@ namespace DrawingDendrogram
             });
             return Point.Add(topLeft, ortaNokta);
         }
-        public Point CreateStartPoint(int X,int Y)
+        public Point CreateStartPoint(int X)
         {
-            return new Point(X, YukseklikHesapla(Y));
+            return new Point(X, YukseklikHesapla(0));
         }
         int YukseklikHesapla(int Yukseklik)
         {
@@ -57,12 +66,11 @@ namespace DrawingDendrogram
                 frame.Draw(e, pen);
             }
         }
-        
+       
         private void panel_Paint(object sender, PaintEventArgs e)
         {
-            Brush myBrush = new SolidBrush(System.Drawing.Color.Blue);
-            Pen pen = new Pen(myBrush, 6);
-            Draw(e,  pen);
+            
+            Draw(e,  Pen);
         }
     }
 }

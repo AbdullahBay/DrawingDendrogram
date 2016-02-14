@@ -17,18 +17,25 @@ namespace TestDrawing
         public Form1()
         {
             InitializeComponent();
-            
+            int XKonum = 10;
+            int Yukseklik = 0;
+            int YukseklikAttisi = 50;
+            int Bosluk = 30;
+
             dendrogramim = new DDendrogram(panel1);
+            Point solAlt = dendrogramim.CreateStartPoint(XKonum);
+            Point sagAlt;
+            for (int i = 0; i <10; i++)
+            {
+                XKonum += Bosluk;
+                sagAlt = dendrogramim.CreateStartPoint(XKonum);
+                Yukseklik += YukseklikAttisi;
+                solAlt = dendrogramim.AddFrame(solAlt, sagAlt, Yukseklik);
+            }
+            
 
-            Point solAlt = dendrogramim.CreateStartPoint(50, 0);
-            Point sagAlt = dendrogramim.CreateStartPoint(70, 0);
-
-            Point solAlt2 = dendrogramim.AddFrame(solAlt, sagAlt, 50);
-
-
-            Point sagAlt2 = dendrogramim.CreateStartPoint(90, 0);
-
-            Point fp = dendrogramim.AddFrame(solAlt2, sagAlt2, 100);
+            
+            dendrogramim.Customize(Color.Black);
             dendrogramim.Draw();
         }
      
