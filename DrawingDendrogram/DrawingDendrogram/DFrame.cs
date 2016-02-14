@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
-namespace TestDrawing
+namespace DrawingDendrogram
 {
     class DFrame
     {
@@ -14,5 +15,12 @@ namespace TestDrawing
         public Point TopLeftPoint;
         public Point TopRightPoint;
         public float Height;
+
+        public void Draw(PaintEventArgs e, Pen pen)
+        {
+            e.Graphics.DrawLine(pen, TopLeftPoint,  BottomLeftPoint);
+            e.Graphics.DrawLine(pen, TopRightPoint, BottomRightPoint);
+            e.Graphics.DrawLine(pen, TopRightPoint, TopLeftPoint);
+        }
     }
 }
