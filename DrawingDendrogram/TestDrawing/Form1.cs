@@ -32,9 +32,9 @@ namespace TestDrawing
                 Yukseklik += YukseklikAttisi;
                 solAlt = dendrogramim.AddFrame(solAlt, sagAlt, Yukseklik);
             }
-            
 
-            
+
+            dendrogramim.Scale();
             dendrogramim.Customize(Color.Black);
             dendrogramim.Draw();
         }

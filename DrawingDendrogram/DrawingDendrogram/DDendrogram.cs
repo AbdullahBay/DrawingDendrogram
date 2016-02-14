@@ -19,17 +19,23 @@ namespace DrawingDendrogram
             Brush = new SolidBrush(lineColor);
             Pen = new Pen(Brush, 6);
         }
-        int calismaAlaniYukseklik;
+        int PanelHeight, PanelWidth;
         public DDendrogram(Panel gelenPanel)
         {
             Frames = new List<DFrame>();
             panel = gelenPanel;
-            calismaAlaniYukseklik = panel.Height;
+            PanelHeight = panel.Height;
+            PanelWidth = panel.Width;
             Brush = new SolidBrush(System.Drawing.Color.Blue);
             Pen = new Pen(Brush, 6);
         }
+        int DendrogramHeigh = 0;
         public Point AddFrame(Point bottomleftPoint, Point bottomrightPoint, int height)
         {
+            if (DendrogramHeigh < height)
+            {
+                DendrogramHeigh = height;
+            }
             Point topLeft;
             Point topRihgt;
             topLeft = new Point((Size)bottomleftPoint);
@@ -47,17 +53,34 @@ namespace DrawingDendrogram
             });
             return Point.Add(topLeft, ortaNokta);
         }
+        int LeftX = 0, RightX, DendrogramWidth;
         public Point CreateStartPoint(int X)
         {
+            if (X < LeftX)
+            {
+                LeftX = X;
+            }
+            else if (X > RightX)
+            {
+                RightX = X;
+            }
             return new Point(X, YukseklikHesapla(0));
         }
         int YukseklikHesapla(int Yukseklik)
         {
-            return calismaAlaniYukseklik - Yukseklik;
+            return PanelHeight - Yukseklik;
         }
+       
         public void Draw()
         {
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
+        }
+        float WidthScale, HeightScale;
+        public void Scale()
+        {
+            DendrogramWidth = RightX - LeftX;
+            WidthScale = PanelWidth / (float)DendrogramWidth;
+            HeightScale = PanelHeight / (float)DendrogramHeigh;
         }
         void Draw(PaintEventArgs e, Pen pen)
         {
